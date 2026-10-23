@@ -1,0 +1,35 @@
+name: Bug report
+description: Something in the CLI, tagger, ranker, or report is wrong.
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What did you run, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Commands only. Do not paste question-paper text or secrets.
+      placeholder: |
+        cbse-physics backtest --corpus example.jsonl
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version and Python
+      placeholder: "cbse-physics 0.1.0, Python 3.12, macOS"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output
+      description: Redact file paths that include your name.
+    validations:
+      required: false

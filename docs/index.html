@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CBSE Physics Predictor — rank NCERT Class 12 concepts before you revise</title>
+  <meta name="description" content="Offline CBSE Class 12 Physics concept predictor. Tag NCERT topics in your question-paper PDFs, rank them with empirical Bayes and gradient boosting, check the ranker with a walk-forward backtest, and build an expected-value study plan.">
+  <meta name="keywords" content="CBSE Class 12 Physics, NCERT concept predictor, board exam study plan, previous year question papers, empirical Bayes, gradient boosting, walk-forward backtest, physics chapter weightage, question paper PDF">
+  <meta name="author" content="Ryan Editraj">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ryaneditraj.github.io/cbse-physics-predictor/">
+  <link rel="author" href="https://github.com/ryaneditraj">
+  <meta property="og:title" content="CBSE Physics Predictor — NCERT concepts ranked for Class 12">
+  <meta property="og:description" content="Tag your own Physics papers, walk-forward test the ranker, and spend the next hour where the expected marks are. Offline. Not a paper leak.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ryaneditraj.github.io/cbse-physics-predictor/">
+  <meta property="og:image" content="https://raw.githubusercontent.com/ryaneditraj/cbse-physics-predictor/main/docs/screenshots/report.png">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CBSE Physics Predictor — NCERT concepts ranked for Class 12">
+  <meta name="twitter:description" content="Empirical Bayes, gradient boosting, and a walk-forward backtest for CBSE Class 12 Physics study plans. Offline Python CLI.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/ryaneditraj/cbse-physics-predictor/main/docs/screenshots/report.png">
+  <meta name="theme-color" content="#12140f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2312140f'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia' font-size='20' fill='%23dff25a'%3E%CE%A6%3C/text%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "CBSE Physics Predictor",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "softwareVersion": "0.1.0",
+        "license": "https://opensource.org/licenses/MIT",
+        "codeRepository": "https://github.com/ryaneditraj/cbse-physics-predictor",
+        "url": "https://ryaneditraj.github.io/cbse-physics-predictor/",
+        "description": "Ranks NCERT Class 12 Physics concepts from local question-paper tags using empirical Bayes and gradient boosting, checks them with a walk-forward backtest, and builds an expected-value study plan.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": {
+          "@type": "Person",
+          "name": "Ryan Editraj",
+          "url": "https://github.com/ryaneditraj",
+          "sameAs": ["https://github.com/ryaneditraj", "https://instagram.com/ryaneditraj"]
+        },
+        "keywords": "CBSE Class 12 Physics, NCERT, empirical Bayes, gradient boosting, walk-forward validation, study plan"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does the CBSE Physics Predictor predict?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It ranks NCERT Class 12 Physics concepts by how likely they are to appear in a target year, using tagged papers you provide. It does not predict a specific question or your board percentage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does this tool leak the upcoming CBSE board paper?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It only uses years before the year it is scoring. An unpublished paper is invisible to it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is the data in the repository real CBSE question papers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The bundled corpus is a deterministic fixture so the demo runs offline. Point ingest at your own PDFs before you trust a study plan."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is the study plan's expected value calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Expected marks equal the probability a concept appears times the average marks when it appeared. The plan schedules concepts by expected marks per hour until the hour budget is full. That total is not a predicted score."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is CBSE Physics Predictor affiliated with CBSE or NCERT?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It follows the public Class 12 Physics curriculum and NCERT chapter names. The boards did not review it."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #12140f;
+      --bg-2: #1b2016;
+      --ink: #f3f1e6;
+      --muted: #c4c1b2;
+      --line: #31362a;
+      --accent: #dff25a;
+      --teal: #8fd6c4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(900px 420px at 8% -10%, rgba(223, 242, 90, 0.08), transparent 55%),
+        var(--bg);
+      color: var(--ink);
+      font: 17px/1.55 "Segoe UI", ui-sans-serif, Helvetica, Arial, sans-serif;
+    }
+    a { color: var(--teal); }
+    header, main, footer { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    header { padding-top: 36px; }
+    nav { display: flex; gap: 16px; flex-wrap: wrap; font-size: 15px; }
+    .eyebrow {
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-size: 12px;
+      margin: 28px 0 8px;
+    }
+    h1, h2 { font-family: Georgia, "Iowan Old Style", Palatino, serif; font-weight: 500; }
+    h1 { font-size: clamp(40px, 7vw, 72px); line-height: 0.95; margin: 0 0 16px; }
+    h2 { font-size: 32px; margin: 0 0 8px; }
+    .lede { max-width: 62ch; color: var(--muted); font-size: 19px; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; margin: 20px 0 28px; }
+    .button, .ghost {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+    }
+    .button { background: var(--accent); color: #17180f; font-weight: 650; }
+    .ghost { border: 1px solid var(--line); color: var(--ink); }
+    figure { margin: 12px 0 36px; }
+    img { width: 100%; height: auto; border-radius: 16px; border: 1px solid var(--line); }
+    figcaption { color: var(--muted); font-size: 14px; margin-top: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+    article {
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+    }
+    article h3 { margin: 0 0 6px; font-size: 17px; }
+    article p, details p { margin: 0; color: var(--muted); }
+    section { margin: 36px 0; }
+    pre {
+      background: #0d0f0c;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      overflow: auto;
+      font-size: 14px;
+    }
+    code { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+    details {
+      border-top: 1px solid var(--line);
+      padding: 12px 0;
+    }
+    summary { cursor: pointer; font-size: 17px; }
+    footer { padding: 12px 24px 48px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="https://github.com/ryaneditraj/cbse-physics-predictor">Source</a>
+      <a href="https://github.com/ryaneditraj/cbse-physics-predictor/blob/main/README.md">README</a>
+      <a href="#faq">FAQ</a>
+      <a href="sample-report.html">Sample report</a>
+    </nav>
+    <p class="eyebrow">CBSE Class 12 Physics · offline</p>
+    <h1>Study the concepts that repay the next hour.</h1>
+    <p class="lede">CBSE Physics Predictor ranks NCERT theory concepts from question papers you already have. Empirical Bayes and gradient boosting compete in a walk-forward backtest. The winner becomes an expected-value study plan. It is not a leak, and it is not a predicted score.</p>
+    <div class="row">
+      <a class="button" href="https://github.com/ryaneditraj/cbse-physics-predictor">View on GitHub</a>
+      <a class="ghost" href="sample-report.html">Open the fixture report</a>
+    </div>
+  </header>
+  <main>
+    <figure>
+      <img src="screenshots/report.png" width="1440" height="1680" alt="Fixture study report for 2026. Empirical Bayes captured 35.8 percent of appeared marks in the top 10 concepts, ahead of gradient boosting and the official unit-weight baseline.">
+      <figcaption>Real output of <code>cbse-physics demo</code> on the built-in fixture. The fixture is not a transcription of CBSE papers.</figcaption>
+    </figure>
+    <section>
+      <h2>What you can do with it</h2>
+      <div class="grid">
+        <article>
+          <h3>Tag your PDFs</h3>
+          <p>Keyword matching onto 39 NCERT concepts. The corpus stores ids and marks, not the wording of the paper.</p>
+        </article>
+        <article>
+          <h3>See the backtest first</h3>
+          <p>Each past year is scored with only earlier years. On the fixture, Bayes beat boosting: 35.8% of appeared marks in the top 10, versus 25.6% for a random draw.</p>
+        </article>
+        <article>
+          <h3>Spend a fixed number of hours</h3>
+          <p>The plan fills your budget by expected marks per hour. The total is the value of covering those concepts, not your board percentage.</p>
+        </article>
+      </div>
+    </section>
+    <section>
+      <h2>Install</h2>
+      <pre><code>git clone https://github.com/ryaneditraj/cbse-physics-predictor.git
+cd cbse-physics-predictor
+python -m venv .venv && source .venv/bin/activate
+pip install -e .
+cbse-physics demo</code></pre>
+      <p>Python 3.11 or newer. No API key. The commands, the curriculum note, and the full FAQ are in the <a href="https://github.com/ryaneditraj/cbse-physics-predictor#readme">README</a>.</p>
+    </section>
+    <figure>
+      <img src="screenshots/cli.png" width="1040" height="900" alt="Terminal screenshot of cbse-physics demo showing the walk-forward table, capacitance at the top of the ranking, and a 20 hour study plan.">
+      <figcaption>The same demo, in the terminal.</figcaption>
+    </figure>
+    <section id="faq">
+      <h2>Questions</h2>
+      <details open>
+        <summary>What does this predict?</summary>
+        <p>Whether an NCERT concept shows up in a target year, and the marks similar appearances have been worth. Not a question, and not your percentage.</p>
+      </details>
+      <details>
+        <summary>Does it know the next CBSE paper?</summary>
+        <p>No. Training years are strictly earlier than the year being scored. An unpublished paper is not an input.</p>
+      </details>
+      <details>
+        <summary>Are the shipped rows real board papers?</summary>
+        <p>No. They are a seeded simulator so the demo runs with nothing to download. Ingest your own PDFs for a plan you might actually follow.</p>
+      </details>
+      <details>
+        <summary>Which syllabus is this?</summary>
+        <p>Class 12 Physics theory, NCERT chapters 1–14, using the combined 2025-26 mark groups that total 70. It is not a CBSE or NCERT product.</p>
+      </details>
+      <details>
+        <summary>Do I need an account or a network connection?</summary>
+        <p>No. OCR, if you enable it, is a local Tesseract binary. There is no key to configure.</p>
+      </details>
+    </section>
+  </main>
+  <footer>
+    <p>MIT license. Built by <a href="https://github.com/ryaneditraj">Ryan Editraj</a> · <a href="https://instagram.com/ryaneditraj">Instagram</a></p>
+    <p>Not affiliated with CBSE or NCERT. Vulnerability reports: <a href="https://github.com/ryaneditraj/cbse-physics-predictor/security/advisories/new">Security Advisories</a>.</p>
+  </footer>
+</body>
+</html>

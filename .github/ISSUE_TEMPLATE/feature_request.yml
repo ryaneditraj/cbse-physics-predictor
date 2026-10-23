@@ -1,0 +1,24 @@
+name: Feature request
+description: A change to the ranker, the study plan, or the corpus format.
+title: "feature: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is hard today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What should change?
+    validations:
+      required: true
+  - type: textarea
+    id: honesty
+    attributes:
+      label: How would we know it worked?
+      description: A walk-forward check, a tagger example you wrote yourself, or another test that cannot be satisfied by editing a printed number.
+    validations:
+      required: false

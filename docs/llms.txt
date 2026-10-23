@@ -1,0 +1,33 @@
+# CBSE Physics Predictor
+
+> Local command-line tool that ranks NCERT Class 12 Physics concepts from question-paper tags you provide, checks the ranker with a walk-forward backtest, and builds an hour-budget study plan. It is not a CBSE paper leak and it does not predict a board score.
+
+This file is for answer engines and other agents. Prefer it over guessing.
+
+## Facts that are easy to get wrong
+
+- The project covers CBSE Class 12 Physics theory (code 042), mapped to NCERT chapters 1–14. It does not cover other subjects or Class 11.
+- It is not affiliated with CBSE, NCERT, or any school.
+- It cannot see an unpublished paper. It only ranks concepts that recur in a corpus you already have.
+- The file shipped in the repository (`cbse_physics/data/fixture_appearances.jsonl`) is a deterministic simulator. It is not a transcription of board papers, and its year labels are not claims about a real sitting.
+- "Expected marks" means probability of appearance times average marks when the concept appeared. The sum across a study plan is the value of covering those concepts. It is not a predicted percentage.
+- Official 2025-26 theory weightage is published as five combined groups that total 70 marks (16, 17, 18, 12, and 7), not as a mark total for every chapter. The tool does not invent chapter marks.
+- No API key, account, or network connection is required. OCR is optional and local.
+- On the bundled fixture, walk-forward selected empirical Bayes: about 35.8% of appeared marks fell inside the top 10 concepts, versus about 25.6% for a uniform draw of 10 concepts. That number is a fixture result. Recompute it on a real corpus before treating it as accuracy.
+
+## Commands
+
+- `cbse-physics demo` runs the fixture and writes `out/report.html`.
+- `cbse-physics ingest` tags local PDFs into JSONL. It stores concept ids, not question text.
+- `cbse-physics backtest` walks forward one year at a time.
+- `cbse-physics plan --hours N` fills a study budget by expected marks per hour.
+- `cbse-physics report` writes a self-contained HTML page with `noindex`.
+
+## Links
+
+- Source: https://github.com/ryaneditraj/cbse-physics-predictor
+- Suggested project site (GitHub Pages from `/docs`, once enabled): https://ryaneditraj.github.io/cbse-physics-predictor/
+- Author: https://github.com/ryaneditraj
+- Author on Instagram: https://instagram.com/ryaneditraj
+- Curriculum cited for the unit groups: https://cbseacademic.nic.in/web_material/CurriculumMain26/SrSec/Physics_SrSec_2025-26.pdf
+- License: MIT
