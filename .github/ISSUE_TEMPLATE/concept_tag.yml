@@ -1,0 +1,29 @@
+name: Concept tag correction
+description: A keyword tags the wrong NCERT concept, or a syllabus concept is missing.
+title: "tag: "
+labels: ["taxonomy"]
+body:
+  - type: input
+    id: concept
+    attributes:
+      label: Concept id
+      description: From `cbse_physics/taxonomy.py`, for example `ch01.gauss_law`. Leave blank if the concept is missing.
+    validations:
+      required: false
+  - type: textarea
+    id: sentence
+    attributes:
+      label: A sentence you wrote yourself
+      description: Do not paste text from a board paper or a textbook. One original sentence that should or should not match.
+    validations:
+      required: true
+  - type: dropdown
+    id: expect
+    attributes:
+      label: Expected result
+      options:
+        - This sentence should match the concept
+        - This sentence should not match the concept
+        - The concept is missing from the taxonomy
+    validations:
+      required: true

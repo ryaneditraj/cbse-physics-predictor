@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /sample-report.html
+
+Sitemap: https://ryaneditraj.github.io/cbse-physics-predictor/sitemap.xml

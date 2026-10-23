@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cbse-physics-predictor"
+version = "0.1.0"
+description = "Rank CBSE Class 12 Physics NCERT concepts from your own question-paper tags."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Ryan Editraj" }]
+keywords = ["cbse", "physics", "ncert", "class-12", "empirical-bayes", "study-plan"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Education",
+]
+dependencies = [
+  "numpy>=1.26,<3",
+  "pypdf>=5.1,<7",
+  "rich>=13.7,<15",
+  "scikit-learn>=1.5,<1.8",
+]
+
+[project.optional-dependencies]
+ocr = ["pdf2image>=1.17.0", "pytesseract>=0.3.13"]
+dev = ["pip-audit>=2.7.3", "pytest>=8.2"]
+
+[project.scripts]
+cbse-physics = "cbse_physics.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ryaneditraj/cbse-physics-predictor"
+Repository = "https://github.com/ryaneditraj/cbse-physics-predictor"
+Issues = "https://github.com/ryaneditraj/cbse-physics-predictor/issues"
+
+[tool.setuptools.packages.find]
+include = ["cbse_physics*"]
+
+[tool.setuptools.package-data]
+cbse_physics = ["data/*.jsonl"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
